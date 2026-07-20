@@ -48,9 +48,14 @@ class _FlashSaleScreenState extends State<FlashSaleScreen> {
                       padding: const EdgeInsets.symmetric(horizontal: 16),
                       child: Row(
                         children: [
+
                           const Icon(Icons.search, color: Colors.grey, size: 22),
+
+
                           const SizedBox(width: 8),
-                          const Text(
+
+
+                           Text(
                             "Aura Tech",
                             style: TextStyle(
                               color: Colors.black,

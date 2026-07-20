@@ -1,5 +1,6 @@
 import 'package:ecommerce/core/constants/app_colors.dart';
 import 'package:ecommerce/core/widgets/product_card.dart';
+import 'package:ecommerce/screens/home/flash_sale_screen.dart';
 import 'package:ecommerce/screens/home/widgets/custom_header_appbar.dart';
 import 'package:ecommerce/screens/home/widgets/section_header.dart';
 import 'package:flutter/material.dart';
@@ -42,7 +43,15 @@ class HomeScreen extends StatelessWidget {
             SectionHeader(
               title: "Flash Sale",
               onViewAllPressed: () {
-                // Navigate to the full flash sale screen
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => FlashSaleScreen(
+                      // projectId: project["id"] as int,
+                      // projectName: project["title"] as String,
+                    ),
+                  ),
+                );
               },
             ),
 

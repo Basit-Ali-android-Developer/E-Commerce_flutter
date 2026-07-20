@@ -64,6 +64,7 @@ class CustomHeaderAppBar extends StatelessWidget {
               ),
             ],
           ),
+
           const SizedBox(height: 16),
 
           //  Search Bar -------------------------------------------------------
