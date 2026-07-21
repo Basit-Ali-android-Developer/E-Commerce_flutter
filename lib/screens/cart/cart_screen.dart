@@ -1,13 +1,20 @@
 import 'package:ecommerce/core/constants/app_colors.dart';
-import 'package:ecommerce/screens/cart/cart_item_card.dart';
+import 'package:ecommerce/screens/cart/widgets/cart_item_card.dart';
+import 'package:ecommerce/screens/order_placement/check_out_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import 'package:ecommerce/core/widgets/static/cart_item.dart';
+import 'package:ecommerce/core/widgets/static/mock_cart_data.dart';
 class CartScreen extends StatelessWidget {
   const CartScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+
+    final cartList = MockCartData.items;
+
+
     return Scaffold(
       backgroundColor: AppColors.white,
       body: SafeArea(
@@ -131,17 +138,19 @@ class CartScreen extends StatelessWidget {
 
               const SizedBox(height: 20),
 
+// PRODUCTS LIST IN CART -------------------------------------------
+
+              // PRODUCTS LIST IN CART -------------------------------------------
 
               ListView.builder(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
-                itemCount: _items.length,
+                itemCount: cartList.length,
                 itemBuilder: (context, index) {
-                  final item = _items[index];
+                  final item = cartList[index];
 
-                  // WRAP YOUR CARD HERE WITH PADDING
                   return Padding(
-                    padding: const EdgeInsets.only(bottom: 16.0), // Adjust spacing here
+                    padding: const EdgeInsets.only(bottom: 16.0),
                     child: CartItemCard(
                       title: item.title,
                       imagePath: item.image,
@@ -154,25 +163,14 @@ class CartScreen extends StatelessWidget {
                       quantity: item.qty,
                       isChecked: item.selected,
                       onCheckedCallback: (val) {
-                        // setState(() => item.selected = val ?? false);
+                        // Action callback
                       },
-                      // onDeleteCallback: () {
-                      //   setState(() => _items.removeAt(index));
-                      // },
-                      // onIncrement: () {
-                      //   setState(() => item.qty++);
-                      // },
-                      // onDecrement: () {
-                      //   if (item.qty > 1) {
-                      //     setState(() => item.qty--);
-                      //   }
-                      // },
                     ),
                   );
                 },
               ),
 
-
+// PROMO CODE CARD -------------------------------------------------
 
               Card(
                 elevation: 4,
@@ -206,9 +204,13 @@ class CartScreen extends StatelessWidget {
                   ),
                 ),
               ),
+
+
               const SizedBox(height: 24),
 
-              // C. ORDER SUMMARY CONTAINER
+ //  ORDER SUMMARY --------------------------------------------------
+
+
               Container(
                 padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
@@ -329,7 +331,7 @@ class CartScreen extends StatelessWidget {
               const SizedBox(height: 20),
 
 
-          Row(
+              Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Column(
@@ -361,7 +363,12 @@ class CartScreen extends StatelessWidget {
 
 
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const CheckOut()),
+                  );
+                },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.blue[800],
                   foregroundColor: Colors.white,
@@ -396,60 +403,3 @@ class CartScreen extends StatelessWidget {
     );
   }
 }
-
-
-class CartItem {
-  String title;
-  String image;
-  String stockStatus;
-  Color stockColor;
-  String delivery;
-  double price;
-  double originalPrice;
-  int discount;
-  int qty;
-  bool selected;
-
-  CartItem({
-    required this.title, required this.image, required this.stockStatus,
-    required this.stockColor, required this.delivery, required this.price,
-    required this.originalPrice, required this.discount, this.qty = 1, this.selected = true,
-  });
-}
-
-
-
-final List<CartItem> _items = [
-  CartItem(
-      title: "Aura Pro Series 7",
-      image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=500",
-      stockStatus: "IN STOCK",
-      stockColor: Colors.green,
-      delivery: "Delivery Tomorrow",
-      price: 1299.00,
-      originalPrice: 1499.00,
-      discount: 13
-  ),
-
-  CartItem(
-      title: "Cloud Walker V2",
-      image: "https://images.unsplash.com/photo-1549298916-b41d501d3772?q=80&w=500",
-      stockStatus: "ONLY 2 LEFT",
-      stockColor: Colors.orange,
-      delivery: "Delivery in 2 Days",
-      price: 450.00,
-      originalPrice: 600.00,
-      discount: 25
-  ),
-
-  CartItem(
-      title: "Classic Matte Black Sunglasses",
-      image: "https://images.unsplash.com/photo-1511499767150-a48a237f0083?q=80&w=500",
-      stockStatus: "IN STOCK",
-      stockColor: Colors.green,
-      delivery: "Delivery Tomorrow",
-      price: 320.00,
-      originalPrice: 380.00,
-      discount: 15
-  ),
-];

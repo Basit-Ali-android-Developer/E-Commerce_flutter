@@ -17,6 +17,7 @@ class AppColors {
   static const Color lightOnPrimary = Color(0xFFC1BEFF);
 
   static const Color white = Colors.white;
+  static const Color bg = Color(0xFFF8F9FA);
   static const Color black = Colors.black;
 
   static const Color grey = Color(0xFF6B7280);
@@ -24,4 +25,5 @@ class AppColors {
 
   static const Color success = Color(0xFF22C55E);
   static const Color error = Color(0xFFEF4444);
+  static const Color border = Color(0xFFEFEFEF);
 }
