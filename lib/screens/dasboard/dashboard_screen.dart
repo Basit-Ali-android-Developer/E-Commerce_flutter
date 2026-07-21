@@ -8,14 +8,25 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class DashboardScreen extends StatefulWidget {
-  const DashboardScreen({super.key});
+  final int initialIndex;
+
+  const DashboardScreen({
+    super.key,
+    this.initialIndex = 0,
+  });
 
   @override
   State<DashboardScreen> createState() => _DashboardScreenState();
 }
 
 class _DashboardScreenState extends State<DashboardScreen> {
-  int selectedIndex = 0;
+  late int selectedIndex;
+
+  @override
+  void initState() {
+    super.initState();
+    selectedIndex = widget.initialIndex;
+  }
 
   final List<Widget> pages = const [
     HomeScreen(),
@@ -24,7 +35,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
     CartScreen(),
     ProfileScreen(),
   ];
-
 
   Widget _buildNavItem({
     required String iconPath,
@@ -35,7 +45,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-
         SvgPicture.asset(
           iconPath,
           width: 24,
@@ -45,11 +54,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
             BlendMode.srcIn,
           ),
         ),
-
-
         const SizedBox(height: 6),
-
-
         Text(
           label,
           style: TextStyle(
@@ -58,94 +63,98 @@ class _DashboardScreenState extends State<DashboardScreen> {
             color: isActive ? AppColors.primary : Colors.grey,
           ),
         ),
-
-
         const SizedBox(height: 4),
-        // Active indicator dot
-        // AnimatedContainer(
-        //   duration: const Duration(milliseconds: 200),
-        //   height: 5,
-        //   width: 5,
-        //   decoration: BoxDecoration(
-        //     shape: BoxShape.circle,
-        //     color: isActive ? AppColors.primary : Colors.transparent,
-        //   ),
-        // ),
       ],
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      body: pages[selectedIndex],
-      bottomNavigationBar: Container(
-        decoration: BoxDecoration(
-          color: Colors.white,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.04), // Soft top glow
-              blurRadius: 20,
-              spreadRadius: 1,
-              offset: const Offset(0, -5),
-            ),
-          ],
+    return PopScope(
+      canPop: selectedIndex == 0, // Allow pop/exit only if on Home tab
+      onPopInvokedWithResult: (didPop, result) {
+        if (didPop) return;
+
+        // If not on Home tab, switch back to Home (index 0)
+        if (selectedIndex != 0) {
+          setState(() {
+            selectedIndex = 0;
+          });
+        }
+      },
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        body: IndexedStack(
+          index: selectedIndex,
+          children: pages,
         ),
-        child: BottomNavigationBar(
-          currentIndex: selectedIndex,
-          onTap: (index) {
-            setState(() {
-              selectedIndex = index;
-            });
-          },
-          type: BottomNavigationBarType.fixed,
-          backgroundColor: Colors.white,
-          elevation: 0, // Relying completely on the Container's custom shadow
-          showSelectedLabels: false, // Hides default labels to prevent duplicates
-          showUnselectedLabels: false,
-          items: [
-            BottomNavigationBarItem(
-              icon: _buildNavItem(
-                iconPath: 'assets/icons/home_icon.svg',
+        bottomNavigationBar: Container(
+          decoration: BoxDecoration(
+            color: Colors.white,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.04),
+                blurRadius: 20,
+                spreadRadius: 1,
+                offset: const Offset(0, -5),
+              ),
+            ],
+          ),
+          child: BottomNavigationBar(
+            currentIndex: selectedIndex,
+            onTap: (index) {
+              setState(() {
+                selectedIndex = index;
+              });
+            },
+            type: BottomNavigationBarType.fixed,
+            backgroundColor: Colors.white,
+            elevation: 0,
+            showSelectedLabels: false,
+            showUnselectedLabels: false,
+            items: [
+              BottomNavigationBarItem(
+                icon: _buildNavItem(
+                  iconPath: 'assets/icons/home_icon.svg',
+                  label: "Home",
+                  isActive: selectedIndex == 0,
+                ),
                 label: "Home",
-                isActive: selectedIndex == 0,
               ),
-              label: "Home", // Keeps accessibility/screen readers happy
-            ),
-            BottomNavigationBarItem(
-              icon: _buildNavItem(
-                iconPath: 'assets/icons/catagory_icon.svg',
+              BottomNavigationBarItem(
+                icon: _buildNavItem(
+                  iconPath: 'assets/icons/catagory_icon.svg',
+                  label: "Categories",
+                  isActive: selectedIndex == 1,
+                ),
                 label: "Categories",
-                isActive: selectedIndex == 1,
               ),
-              label: "Categories",
-            ),
-            BottomNavigationBarItem(
-              icon: _buildNavItem(
-                iconPath: 'assets/icons/heart_icon.svg',
+              BottomNavigationBarItem(
+                icon: _buildNavItem(
+                  iconPath: 'assets/icons/heart_icon.svg',
+                  label: "Wishlist",
+                  isActive: selectedIndex == 2,
+                ),
                 label: "Wishlist",
-                isActive: selectedIndex == 2,
               ),
-              label: "Wishlist",
-            ),
-            BottomNavigationBarItem(
-              icon: _buildNavItem(
-                iconPath: 'assets/icons/cart_icon.svg',
+              BottomNavigationBarItem(
+                icon: _buildNavItem(
+                  iconPath: 'assets/icons/cart_icon.svg',
+                  label: "Cart",
+                  isActive: selectedIndex == 3,
+                ),
                 label: "Cart",
-                isActive: selectedIndex == 3,
               ),
-              label: "Cart",
-            ),
-            BottomNavigationBarItem(
-              icon: _buildNavItem(
-                iconPath: 'assets/icons/person_icon.svg',
+              BottomNavigationBarItem(
+                icon: _buildNavItem(
+                  iconPath: 'assets/icons/person_icon.svg',
+                  label: "Profile",
+                  isActive: selectedIndex == 4,
+                ),
                 label: "Profile",
-                isActive: selectedIndex == 4,
               ),
-              label: "Profile",
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

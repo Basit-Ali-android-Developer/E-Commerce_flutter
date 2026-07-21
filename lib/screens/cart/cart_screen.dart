@@ -60,19 +60,23 @@ class CartScreen extends StatelessWidget {
                 ],
               ),
 
-             SizedBox(height: 20,),
+              SizedBox(height: 20,),
 
 
               Card(
-                elevation: 2,
+                elevation: 0,
                 color: AppColors.white,
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(18),
+                  borderRadius: BorderRadius.circular(12),
+                  side: const BorderSide(
+                    color: AppColors.border,
+                    width: 1.0,
+                  ),
                 ),
                 child: Padding(
                   padding: const EdgeInsets.all(20),
                   child: Column(
-                    // 1. ADD THIS LINE TO ALIGN EVERYTHING TO THE LEFT
+
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
 
@@ -172,11 +176,16 @@ class CartScreen extends StatelessWidget {
 
 // PROMO CODE CARD -------------------------------------------------
 
-              Card(
-                elevation: 4,
-                shadowColor: Colors.black.withOpacity(0.2),
-                color: Colors.white,
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+             Card(
+            elevation: 0,
+            color: AppColors.white,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
+              side: const BorderSide(
+                color: AppColors.border,
+                width: 1.0,
+              ),
+            ),
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
                   child: Row(
@@ -211,19 +220,18 @@ class CartScreen extends StatelessWidget {
  //  ORDER SUMMARY --------------------------------------------------
 
 
-              Container(
-                padding: const EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(16),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.06),
-                      blurRadius: 12,
-                      offset: const Offset(0, 4),
-                    ),
-                  ],
-                ),
+              Card(
+            elevation: 0,
+            color: AppColors.white,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
+              side: const BorderSide(
+                color: AppColors.border,
+                width: 1.0,
+              ),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(20),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -327,6 +335,7 @@ class CartScreen extends StatelessWidget {
                   ],
                 ),
               ),
+          ),
 
               const SizedBox(height: 20),
 

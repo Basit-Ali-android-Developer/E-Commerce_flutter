@@ -11,7 +11,7 @@ class ProductCard extends StatelessWidget {
     super.key,
     required this.product,
     this.onTap,
-    this.width = 170
+    this.width = 180, // Slightly reduced default width to match compact style
   });
 
   @override
@@ -22,13 +22,13 @@ class ProductCard extends StatelessWidget {
         width: width,
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(24),
+          borderRadius: BorderRadius.circular(16), // Reduced radius slightly for compact look
           boxShadow: [
             BoxShadow(
               color: Colors.black.withOpacity(0.04),
-              blurRadius: 12,
+              blurRadius: 8,
               spreadRadius: 1,
-              offset: const Offset(0, 4),
+              offset: const Offset(0, 3),
             ),
           ],
         ),
@@ -36,30 +36,27 @@ class ProductCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
-            // 1. Product Image with Rounded Corners at Top
+            // 1. Product Image (Height reduced from 160 to 120)
             ClipRRect(
               borderRadius: const BorderRadius.vertical(
-                top: Radius.circular(24),
+                top: Radius.circular(16),
               ),
-              child:
-
-              Image.network(
+              child: Image.network(
                 product.imageUrl,
-                height: 160,
+                height: 120, // Reduced image height
                 width: double.infinity,
                 fit: BoxFit.cover,
-                // Graceful loader/error handling
                 errorBuilder: (context, error, stackTrace) => Container(
-                  height: 160,
+                  height: 120,
                   color: Colors.grey[200],
                   child: const Icon(Icons.broken_image, color: Colors.grey),
                 ),
               ),
             ),
 
-            // 2. Product Information Panel
+            // 2. Product Information Panel (Padding reduced to 8)
             Padding(
-              padding: const EdgeInsets.all(12.0),
+              padding: const EdgeInsets.all(8.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -67,32 +64,30 @@ class ProductCard extends StatelessWidget {
                   Text(
                     product.brand.toUpperCase(),
                     style: const TextStyle(
-                      fontSize: 11,
+                      fontSize: 10,
                       fontWeight: FontWeight.bold,
                       color: Colors.grey,
-                      letterSpacing: 0.8,
+                      letterSpacing: 0.6,
+                    ),
+                  ),
+                  const SizedBox(height: 2), // Reduced spacing
+
+                  // Product Title
+                  Text(
+                    product.title,
+                    maxLines: 1, // Reduced to 1 line (change to 2 if needed)
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                      fontSize: 13,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.black87,
                     ),
                   ),
                   const SizedBox(height: 4),
 
-                  // Product Title (max 2 lines)
-                  Text(
-                    product.title,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.black87,
-                      height: 1.25,
-                    ),
-                  ),
-                  const SizedBox(height: 6),
-
                   // Ratings & Review Count
                   Row(
                     children: [
-                      // Stars generator
                       Row(
                         children: List.generate(5, (index) {
                           return Icon(
@@ -100,7 +95,7 @@ class ProductCard extends StatelessWidget {
                                 ? Icons.star
                                 : Icons.star_border,
                             color: Colors.orange,
-                            size: 14,
+                            size: 12, // Reduced star size
                           );
                         }),
                       ),
@@ -108,42 +103,41 @@ class ProductCard extends StatelessWidget {
                       Text(
                         '(${product.reviewsCount})',
                         style: const TextStyle(
-                          fontSize: 11,
+                          fontSize: 10,
                           color: Colors.grey,
                         ),
                       ),
                     ],
                   ),
-                  const SizedBox(height: 8),
+                  const SizedBox(height: 4),
 
-                  // Price (Primary Brand Color)
+                  // Price
                   Text(
                     '\$${product.price.toStringAsFixed(2)}',
                     style: TextStyle(
-                      fontSize: 16,
+                      fontSize: 14, // Slightly smaller font
                       fontWeight: FontWeight.bold,
-                      color: AppColors.primary, // Your blue color
+                      color: AppColors.primary,
                     ),
                   ),
-                  const SizedBox(height: 8),
+                  const SizedBox(height: 4),
 
                   // Feature Badge
                   Container(
                     padding: const EdgeInsets.symmetric(
-                      horizontal: 8,
-                      vertical: 4,
+                      horizontal: 6,
+                      vertical: 2, // Reduced internal padding
                     ),
                     decoration: BoxDecoration(
-                      color: const Color(0xFFF1F2F5), // Light grey matching design
+                      color: const Color(0xFFF1F2F5),
                       borderRadius: BorderRadius.circular(4),
                     ),
                     child: Text(
                       product.badgeText,
                       style: const TextStyle(
-                        fontSize: 8.5,
+                        fontSize: 8,
                         fontWeight: FontWeight.bold,
                         color: Color(0xFF434A54),
-                        letterSpacing: 0.2,
                       ),
                     ),
                   ),

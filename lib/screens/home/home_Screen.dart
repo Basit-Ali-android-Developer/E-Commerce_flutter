@@ -39,6 +39,7 @@ class HomeScreen extends StatelessWidget {
             ),
 
 
+// FLASH SALE -------------------------------------------------------------------
 
             SectionHeader(
               title: "Flash Sale",
@@ -57,7 +58,7 @@ class HomeScreen extends StatelessWidget {
 
 
             SizedBox(
-              height: 360, //
+              height: 270, //
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 physics: const BouncingScrollPhysics(),
@@ -110,6 +111,7 @@ class HomeScreen extends StatelessWidget {
               ],
             ),
         ),
+
             const SizedBox(height: 20),
 
 
@@ -126,7 +128,7 @@ class HomeScreen extends StatelessWidget {
                   crossAxisCount: 2,
                   crossAxisSpacing: 16,
                   mainAxisSpacing: 16,
-                  childAspectRatio: 0.48,
+                  childAspectRatio: 0.65,
                 ),
                 itemCount: mockProducts.length,
                 itemBuilder: (context, index) {

@@ -13,6 +13,8 @@ class AppColors {
   static const Color primaryText = Color(0xFF2A14B4);
   static const Color greyText = Color(0xFF464554);
   static const Color brown = Color(0xFF692400);
+  static const Color brown1 = Color(0xFF914C00);
+  static const Color black1 = Color(0xFF494848);
 
   static const Color lightOnPrimary = Color(0xFFC1BEFF);
 

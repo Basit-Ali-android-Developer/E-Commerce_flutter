@@ -2,6 +2,7 @@ import 'package:ecommerce/core/constants/app_colors.dart';
 import 'package:ecommerce/core/widgets/custom_icon_button.dart';
 import 'package:ecommerce/core/widgets/static/mock_cart_data.dart';
 import 'package:ecommerce/core/widgets/static/saved_card_model.dart';
+import 'package:ecommerce/screens/order_placement/order_confirmed_screen.dart';
 import 'package:ecommerce/screens/order_placement/payment_method_screen.dart';
 import 'package:ecommerce/screens/order_placement/widgets/credit_card_widget.dart';
 import 'package:ecommerce/screens/order_placement/widgets/delivery_method_card.dart';
@@ -305,7 +306,10 @@ class _PaymentMethod extends State<PaymentMethod> {
                     text: "Pay Now",
                     icon: Icons.lock_outline,
                     onPressed: () {
-
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) =>  OrderConfirmedScreen()),
+                      );
                     },
                   ),
 
