@@ -1,14 +1,8 @@
 import 'package:ecommerce/core/constants/app_colors.dart';
 import 'package:ecommerce/core/constants/product.dart';
-import 'package:ecommerce/core/widgets/product_card.dart';
-import 'package:ecommerce/screens/cart/widgets/cart_item_card.dart';
-import 'package:ecommerce/screens/home/widgets/wishlist_product_card.dart';
-import 'package:ecommerce/screens/order_placement/check_out_screen.dart';
+import 'package:ecommerce/screens/wishlist/widgets/wishlist_product_card.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
-import 'package:ecommerce/core/widgets/static/cart_item.dart';
-import 'package:ecommerce/core/widgets/static/mock_cart_data.dart';
 
 class WishlistScreen extends StatelessWidget {
   const WishlistScreen({super.key});
@@ -81,11 +75,7 @@ class WishlistScreen extends StatelessWidget {
 
               // Vertical Product Grid
 
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                child:
-
-                GridView.builder(
+              GridView.builder(
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -112,7 +102,7 @@ class WishlistScreen extends StatelessWidget {
                     );
                   },
                 ),
-              ),
+
 
 
             ],

@@ -1,5 +1,8 @@
 import 'package:ecommerce/core/constants/app_colors.dart';
+import 'package:ecommerce/core/constants/category_item.dart';
+import 'package:ecommerce/core/widgets/category_card.dart';
 import 'package:ecommerce/core/widgets/product_card.dart';
+import 'package:ecommerce/screens/catagory/category_screen.dart';
 import 'package:ecommerce/screens/home/flash_sale_screen.dart';
 import 'package:ecommerce/screens/home/widgets/custom_header_appbar.dart';
 import 'package:ecommerce/screens/home/widgets/section_header.dart';
@@ -39,10 +42,60 @@ class HomeScreen extends StatelessWidget {
             ),
 
 
+// catagory portion -------------------------------------------------------------
+
+            SectionHeader(
+              title: "Categories",
+              icon: Icons.category_outlined,
+              onViewAllPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const CategoryScreen(), // Shows all items
+                  ),
+                );
+              },
+            ),
+
+
+            SizedBox(
+              height: 92,
+              child: ListView.separated(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                scrollDirection: Axis.horizontal,
+                itemCount: mockCategories.length,
+                separatorBuilder: (context, index) => const SizedBox(width: 16),
+                itemBuilder: (context, index) {
+                  final category = mockCategories[index];
+                  return CategoryCard(
+                    title: category.title,
+                    iconPath: category.iconPath,
+                    backgroundColor: category.backgroundColor,
+                    iconColor: category.iconColor,
+                    onTap: () {
+                      // Open CategoryScreen with the tapped category pre-selected
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => CategoryScreen(
+                            initialCategory: category.title,
+                          ),
+                        ),
+                      );
+                    },
+                  );
+                },
+              ),
+            ),
+
+
+            SizedBox(height: 12),
+
 // FLASH SALE -------------------------------------------------------------------
 
             SectionHeader(
               title: "Flash Sale",
+              icon: Icons.bolt,
               onViewAllPressed: () {
                 Navigator.push(
                   context,
@@ -81,18 +134,12 @@ class HomeScreen extends StatelessWidget {
             ),
 
 
-
+// recommended item list ---------------------------------------------------------
 
             SizedBox(height: 12),
 
-            // 4. Recommended for You Section Header
-            // SectionHeader(
-            //   title: "Recommended for You",
-            //   onViewAllPressed: () {},
-            // ),
 
-            // Left Side: Icon & Title
-        Padding(
+            Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: Row(
               children: [
@@ -114,8 +161,6 @@ class HomeScreen extends StatelessWidget {
 
             const SizedBox(height: 20),
 
-
-            // Vertical Product Grid
 
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),

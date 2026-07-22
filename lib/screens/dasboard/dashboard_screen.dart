@@ -1,6 +1,5 @@
 import 'package:ecommerce/core/constants/app_colors.dart';
 import 'package:ecommerce/screens/cart/cart_screen.dart';
-import 'package:ecommerce/screens/catagory/catagory_screen.dart';
 import 'package:ecommerce/screens/home/home_Screen.dart';
 import 'package:ecommerce/screens/profile/profile_screen.dart';
 import 'package:ecommerce/screens/wishlist/wishlist_screen.dart';
@@ -30,7 +29,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   final List<Widget> pages = const [
     HomeScreen(),
-    CatagoryScreen(),
+   // CategoryScreen(),
     WishlistScreen(),
     CartScreen(),
     ProfileScreen(),
@@ -45,6 +44,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
+
         SvgPicture.asset(
           iconPath,
           width: 24,
@@ -54,7 +54,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
             BlendMode.srcIn,
           ),
         ),
+
         const SizedBox(height: 6),
+
         Text(
           label,
           style: TextStyle(
@@ -63,6 +65,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
             color: isActive ? AppColors.primary : Colors.grey,
           ),
         ),
+
         const SizedBox(height: 4),
       ],
     );
@@ -121,19 +124,19 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 ),
                 label: "Home",
               ),
-              BottomNavigationBarItem(
-                icon: _buildNavItem(
-                  iconPath: 'assets/icons/catagory_icon.svg',
-                  label: "Categories",
-                  isActive: selectedIndex == 1,
-                ),
-                label: "Categories",
-              ),
+              // BottomNavigationBarItem(
+              //   icon: _buildNavItem(
+              //     iconPath: 'assets/icons/catagory_icon.svg',
+              //     label: "Categories",
+              //     isActive: selectedIndex == 1,
+              //   ),
+              //   label: "Categories",
+              // ),
               BottomNavigationBarItem(
                 icon: _buildNavItem(
                   iconPath: 'assets/icons/heart_icon.svg',
                   label: "Wishlist",
-                  isActive: selectedIndex == 2,
+                  isActive: selectedIndex == 1,
                 ),
                 label: "Wishlist",
               ),
@@ -141,7 +144,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 icon: _buildNavItem(
                   iconPath: 'assets/icons/cart_icon.svg',
                   label: "Cart",
-                  isActive: selectedIndex == 3,
+                  isActive: selectedIndex == 2,
                 ),
                 label: "Cart",
               ),
@@ -149,7 +152,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 icon: _buildNavItem(
                   iconPath: 'assets/icons/person_icon.svg',
                   label: "Profile",
-                  isActive: selectedIndex == 4,
+                  isActive: selectedIndex == 3,
                 ),
                 label: "Profile",
               ),

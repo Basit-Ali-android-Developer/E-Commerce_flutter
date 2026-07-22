@@ -1,3 +1,4 @@
+import 'package:ecommerce/core/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class CartItemCard extends StatelessWidget {
@@ -39,22 +40,32 @@ class CartItemCard extends StatelessWidget {
     return Container(
      // margin: const EdgeInsets.only(bottom: 16), // Uncommented to separate cards
       padding: const EdgeInsets.all(12),
+      // decoration: BoxDecoration(
+      //   color: Colors.white,
+      //   borderRadius: BorderRadius.circular(16),
+      //
+      //   // --- UPDATED ELEVATION SHADOW ---
+      //   boxShadow: [
+      //     BoxShadow(
+      //       color: Colors.black.withOpacity(0.06), // A slightly darker, natural shadow tint
+      //       spreadRadius: 0,                       // Keeps the shadow crisp
+      //       blurRadius: 12,                        // Makes the shadow softer and spread out more
+      //       offset: const Offset(0, 4),            // Pushes the shadow down to give a floating card effect
+      //     ),
+      //   ],
+      //   // ---------------------------------
+      //
+      // ),
+
       decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(16),
-
-        // --- UPDATED ELEVATION SHADOW ---
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.06), // A slightly darker, natural shadow tint
-            spreadRadius: 0,                       // Keeps the shadow crisp
-            blurRadius: 12,                        // Makes the shadow softer and spread out more
-            offset: const Offset(0, 4),            // Pushes the shadow down to give a floating card effect
-          ),
-        ],
-        // ---------------------------------
-
+        color: AppColors.white,
+        borderRadius: BorderRadius.circular(20), // Matching your card radius
+        border: Border.all(
+          color: AppColors.border, // Matching your Card side border color
+          width: 1,
+        ),
       ),
+
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

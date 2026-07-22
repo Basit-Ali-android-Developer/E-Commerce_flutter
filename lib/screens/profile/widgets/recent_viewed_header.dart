@@ -1,18 +1,18 @@
 import 'package:ecommerce/core/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 
-class SectionHeader extends StatelessWidget {
+class RecentViewedHeader extends StatelessWidget {
   final String title;
-  final IconData icon;
+ // final IconData icon;
   final Color iconColor;
-  final VoidCallback? onViewAllPressed;
+  final VoidCallback? onClearPressed;
 
-  const SectionHeader({
+  const RecentViewedHeader({
     super.key,
     required this.title,
-    required this.icon,
+   // this.icon = Icons.bolt,
     this.iconColor = const Color(0xFF9E6514),
-    this.onViewAllPressed,
+    this.onClearPressed,
   });
 
   @override
@@ -25,19 +25,13 @@ class SectionHeader extends StatelessWidget {
           // Left Side: Icon & Title
           Row(
             children: [
-              Icon(
-                icon,
-                color: iconColor,
-                size: 26,
-              ),
-              const SizedBox(width: 8),
               Text(
                 title,
-                style: const TextStyle(
-                  fontSize: 20,
+                style: TextStyle(
+                  fontSize: 17,
                   fontWeight: FontWeight.bold,
-                  color: Colors.black,
-                  letterSpacing: -0.5,
+                  color: AppColors.black, // Matches your brand blue
+                  letterSpacing: 1.2,
                 ),
               ),
             ],
@@ -45,10 +39,10 @@ class SectionHeader extends StatelessWidget {
 
           // Right Side: "View All" Button
           GestureDetector(
-            onTap: onViewAllPressed,
+            onTap: onClearPressed,
             behavior: HitTestBehavior.opaque,
             child: Text(
-              'View All',
+              'Clear',
               style: TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.normal,

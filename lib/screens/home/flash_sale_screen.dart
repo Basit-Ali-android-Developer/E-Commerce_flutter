@@ -26,18 +26,23 @@ class _FlashSaleScreenState extends State<FlashSaleScreen> {
       body: SafeArea(
         child: Column(
           children: [
-            //  Top Bar: Back Button and Inline Search Input
+
+// top bar -----------------------------------------------------------------------
+
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Row(
                 children: [
+
                   IconButton(
                     padding: EdgeInsets.zero,
                     constraints: const BoxConstraints(),
                     icon: const Icon(Icons.arrow_back, color: Colors.black, size: 26),
                     onPressed: () => Navigator.pop(context),
                   ),
+
                   const SizedBox(width: 12),
+
                   Expanded(
                     child: Container(
                       height: 46,
@@ -67,11 +72,16 @@ class _FlashSaleScreenState extends State<FlashSaleScreen> {
                       ),
                     ),
                   ),
+
                 ],
               ),
             ),
 
-            //  Control Row: Result Count, Sort & Filter Actions
+
+
+//  filter row -------------------------------------------------------------------
+
+
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Row(
@@ -95,9 +105,13 @@ class _FlashSaleScreenState extends State<FlashSaleScreen> {
                 ],
               ),
             ),
+
+
             const SizedBox(height: 12),
 
-            //  Horizontal Active Filters Sub-List
+//  Horizontal Active Filters Sub-List -------------------------------------------
+
+
             SizedBox(
               height: 38,
               child: ListView.builder(
@@ -139,15 +153,20 @@ class _FlashSaleScreenState extends State<FlashSaleScreen> {
                 },
               ),
             ),
+
+
             const SizedBox(height: 16),
 
-            //  Scrollable Main Content Panel (Grid + "Show More" Button)
+//  list of products in grid ----------------------------------------------------
+
+
             Expanded(
               child: SingleChildScrollView(
                 physics: const BouncingScrollPhysics(),
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 child: Column(
                   children: [
+
                     GridView.builder(
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
@@ -155,17 +174,20 @@ class _FlashSaleScreenState extends State<FlashSaleScreen> {
                         crossAxisCount: 2,
                         crossAxisSpacing: 16,
                         mainAxisSpacing: 16,
-                        childAspectRatio: 0.48, // Gives layout padding breathing room
+                        childAspectRatio: 0.72,
                       ),
                       itemCount: mockProducts.length,
                       itemBuilder: (context, index) {
+                        final product = mockProducts[index];
                         return ProductCard(
-                          product: mockProducts[index],
-                          width: null, // Allow expanding natively inside column width
+                          product: product,
+                          width: null,
                           onTap: () {},
                         );
                       },
                     ),
+
+
                     const SizedBox(height: 24),
 
                     //  "Show More Results" Action Banner

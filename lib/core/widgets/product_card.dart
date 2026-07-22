@@ -20,17 +20,25 @@ class ProductCard extends StatelessWidget {
       onTap: onTap,
       child: Container(
         width: width,
+        // decoration: BoxDecoration(
+        //   color: Colors.white,
+        //   borderRadius: BorderRadius.circular(16), // Reduced radius slightly for compact look
+        //   boxShadow: [
+        //     BoxShadow(
+        //       color: Colors.black.withOpacity(0.04),
+        //       blurRadius: 8,
+        //       spreadRadius: 1,
+        //       offset: const Offset(0, 3),
+        //     ),
+        //   ],
+        // ),
         decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(16), // Reduced radius slightly for compact look
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.04),
-              blurRadius: 8,
-              spreadRadius: 1,
-              offset: const Offset(0, 3),
-            ),
-          ],
+          color: AppColors.white,
+          borderRadius: BorderRadius.circular(20), // Matching your card radius
+          border: Border.all(
+            color: AppColors.border, // Matching your Card side border color
+            width: 1,
+          ),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
