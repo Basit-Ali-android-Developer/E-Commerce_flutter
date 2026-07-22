@@ -138,13 +138,15 @@ class _CategoryScreenState extends State<CategoryScreen> {
                 ),
               ),
             )
-                : GridView.builder(
+                :
+
+            GridView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
-                crossAxisSpacing: 16,
-                mainAxisSpacing: 16,
+                crossAxisSpacing: 12,
+                mainAxisSpacing: 12,
                 childAspectRatio: 0.65,
               ),
               itemCount: filteredProducts.length,
@@ -152,7 +154,6 @@ class _CategoryScreenState extends State<CategoryScreen> {
                 final product = filteredProducts[index];
                 return ProductCard(
                   product: product,
-                  width: null,
                   onTap: () {},
                 );
               },

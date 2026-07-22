@@ -159,29 +159,26 @@ class _FlashSaleScreenState extends State<FlashSaleScreen> {
 
 //  list of products in grid ----------------------------------------------------
 
-
             Expanded(
               child: SingleChildScrollView(
                 physics: const BouncingScrollPhysics(),
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 child: Column(
                   children: [
-
                     GridView.builder(
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
                       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
-                        crossAxisSpacing: 16,
-                        mainAxisSpacing: 16,
-                        childAspectRatio: 0.72,
+                        crossAxisSpacing: 12,
+                        mainAxisSpacing: 12,
+                        childAspectRatio: 0.65,
                       ),
                       itemCount: mockProducts.length,
                       itemBuilder: (context, index) {
                         final product = mockProducts[index];
                         return ProductCard(
                           product: product,
-                          width: null,
                           onTap: () {},
                         );
                       },

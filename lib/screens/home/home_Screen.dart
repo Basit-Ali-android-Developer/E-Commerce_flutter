@@ -42,7 +42,7 @@ class HomeScreen extends StatelessWidget {
             ),
 
 
-// catagory portion -------------------------------------------------------------
+// category portion -------------------------------------------------------------
 
             SectionHeader(
               title: "Categories",
@@ -162,30 +162,26 @@ class HomeScreen extends StatelessWidget {
             const SizedBox(height: 20),
 
 
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child:
-
-              GridView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 16,
-                  mainAxisSpacing: 16,
-                  childAspectRatio: 0.65,
-                ),
-                itemCount: mockProducts.length,
-                itemBuilder: (context, index) {
-                  final product = mockProducts[index];
-                  return ProductCard(
-                    product: product,
-                    width: null,
-                    onTap: () {},
-                  );
-                },
+            GridView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                crossAxisSpacing: 12,
+                mainAxisSpacing: 12,
+                childAspectRatio: 0.65,
               ),
+              itemCount: mockProducts.length,
+              itemBuilder: (context, index) {
+                final product = mockProducts[index];
+                return ProductCard(
+                  product: product,
+                  onTap: () {},
+                );
+              },
             ),
+
+
 
             const SizedBox(height: 24),
 

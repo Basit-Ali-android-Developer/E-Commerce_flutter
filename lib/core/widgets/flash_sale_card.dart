@@ -2,12 +2,12 @@ import 'package:ecommerce/core/constants/app_colors.dart';
 import 'package:ecommerce/core/constants/product.dart';
 import 'package:flutter/material.dart';
 
-class ProductCard extends StatelessWidget {
+class FlashSaleCard extends StatelessWidget {
   final Product product;
   final VoidCallback? onTap;
   final double? width;
 
-  const ProductCard({
+  const FlashSaleCard({
     super.key,
     required this.product,
     this.onTap,
@@ -22,18 +22,16 @@ class ProductCard extends StatelessWidget {
         width: width,
         decoration: BoxDecoration(
           color: AppColors.white,
-          borderRadius: BorderRadius.circular(20), // Matching your card radius
+          borderRadius: BorderRadius.circular(20),
           border: Border.all(
-            color: AppColors.border, // Matching your Card side border color
+            color: AppColors.border,
             width: 1,
           ),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
           children: [
-
-
+            // 1. Dynamic Product Image (Takes available top space smoothly)
             Expanded(
               child: ClipRRect(
                 borderRadius: const BorderRadius.vertical(

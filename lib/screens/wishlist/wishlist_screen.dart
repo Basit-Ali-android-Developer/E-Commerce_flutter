@@ -75,34 +75,28 @@ class WishlistScreen extends StatelessWidget {
 
               // Vertical Product Grid
 
-              GridView.builder(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    crossAxisSpacing: 16,
-                    mainAxisSpacing: 16,
-                    childAspectRatio: 0.65,
-                  ),
-                  itemCount: mockProducts.length,
-                  itemBuilder: (context, index) {
-                    final product = mockProducts[index];
-                    return WishlistProductCard(
-                      product: product,
-                      width: null, // Width is managed by GridView cell constraints
-                      onTap: () {
-                        // Navigate to product details screen
-                      },
-                      onRemoveTap: () {
-                        // Handle removing item from wishlist
-                      },
-                      onMoveToCartTap: () {
-                        // Handle moving item to cart
-                      },
-                    );
-                  },
-                ),
 
+              GridView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 16,
+                  mainAxisSpacing: 16,
+                  childAspectRatio: 0.65, // Standard aspect ratio
+                ),
+                itemCount: mockProducts.length,
+                itemBuilder: (context, index) {
+                  final product = mockProducts[index];
+                  return WishlistProductCard(
+                    product: product,
+                    width: null,
+                    onTap: () {},
+                    onRemoveTap: () {},
+                    onMoveToCartTap: () {},
+                  );
+                },
+              ),
 
 
             ],

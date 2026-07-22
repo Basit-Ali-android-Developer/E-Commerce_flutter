@@ -336,7 +336,7 @@ class OrderConfirmedScreen extends StatelessWidget {
                     onPressed: () {
                       Navigator.of(context).pushAndRemoveUntil(
                         MaterialPageRoute(
-                          builder: (context) =>  DashboardScreen(initialIndex: 3), // Pass Cart tab index
+                          builder: (context) =>  DashboardScreen(initialIndex: 2), // Pass Cart tab index
                         ),
                             (route) => false, // Removes all routes behind it
                       );
